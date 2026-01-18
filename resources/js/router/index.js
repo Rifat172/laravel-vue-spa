@@ -2,7 +2,6 @@ import {createRouter, createWebHistory} from 'vue-router';
 import ProductList from '../components/ProductList.vue';
 import EditProduct from '../components/EditProduct.vue';
 import CreateProduct from '../components/CreateProduct.vue';
-import { Component } from 'react';
 
 const routes = [
     {
