@@ -10,12 +10,6 @@ export default defineConfig({
             refresh: true,
         }),
         tailwindcss(),
-    ],
-    plugins: [
-        laravel({
-            input: ['resources/css/app.css', 'resources/js/app.js'],
-            refresh: true,
-        }),
         vue(),
     ],
     server: {
