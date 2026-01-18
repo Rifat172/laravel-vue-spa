@@ -11,6 +11,6 @@
     <body>
         <div id="app"></div>
 
-        <script type="module" str="{{ Vite::asset('resources/js/app/js') }}"></script>
+        <script type="module" str="{{ Vite::asset('resources/js/app.js') }}"></script>
     </body>
 </html>
