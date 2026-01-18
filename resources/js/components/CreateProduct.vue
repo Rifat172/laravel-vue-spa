@@ -37,32 +37,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-input, textarea {
-  width: 100%;
-  padding: 8px;
-}
-button {
-  margin-top: 10px;
-  padding: 8px 12px;
-  cursor: pointer;
-}
-.create-btn {
-  background-color: green;
-  color: white;
-}
-.cancel-btn {
-  background-color: gray;
-  color: white;
-  text-decoration: none;
-  display: inline-block;
-  padding: 8px 12px;
-  text-align: center;
-}
-</style>
