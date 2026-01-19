@@ -6,8 +6,10 @@
                 <strong>{{ product.name }}</strong> - {{ product.price }}₽
             </div>
             {{ product.description }}
-            <router-link :to="`/products/${product.id}/edit`" class="btn">Edit</router-link>
-            <button @click="deleteProduct(product.id)" class="delete-btn btn">Delete</button>
+            <div class="button--wrapper">
+                <router-link :to="`/products/${product.id}/edit`" class="btn">Edit</router-link>
+                <button @click="deleteProduct(product.id)" class="delete-btn btn">Delete</button>
+            </div>
         </div>
     </div>
     <router-link to="/products/create" class="create-btn btn">Add</router-link>
@@ -40,7 +42,9 @@ export default {
 <style scoped>
 .btn{
     border: 1px solid;
+    border-color: black;
     height: 50px;
+    min-height: 50px;
     width: 100px;
     cursor: pointer;
     text-decoration: none;
@@ -65,13 +69,30 @@ export default {
     box-sizing: border-box;
 }
 
+/* Элемент внутри сетки (карточка) */
+.wrapper > div { 
+    display: flex;
+    flex-direction: column;
+}
+
+/* Ваш блок с кнопкой */
+.button--wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-top: auto; /* ЭТО КЛЮЧЕВОЙ МОМЕНТ: выталкивает блок вниз */
+}
+
 .wrapper {
     padding-right: 20px;
     padding-left: 20px;
+    padding-top: 20px;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
-    /* justify-content: center; */
+    justify-content: center;
+    /* border: 10px solid; */
+    height: 100%;
 }
 
 .col {
@@ -81,6 +102,7 @@ export default {
     border: 1px solid;
     border-radius: 10px;
     padding: 20px;
+    height: 250px;
 }
 
 h1 {
