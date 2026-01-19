@@ -1,5 +1,5 @@
 <template>
-    <h1>Product List</h1>
+    <!-- <h1>Product List</h1>   -->
     <div class="wrapper">
         <div class="col" v-for="product in products" :key="product.id">
             <div>
@@ -65,18 +65,13 @@ export default {
     box-sizing: border-box;
 }
 
-body {
-    width: 980px;
-    margin: 0 auto;
-}
-
 .wrapper {
     padding-right: 20px;
     padding-left: 20px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
-    justify-content: center;
+    /* justify-content: center; */
 }
 
 .col {

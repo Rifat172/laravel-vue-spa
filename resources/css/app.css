@@ -9,3 +9,39 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+.wrapper {
+  display: grid;
+  grid-template-areas: 
+    "header header header"
+    "left-bar main right-bar"
+    "footer footer footer";
+  grid-template-columns: 200px 1fr 200px; /* Fixed sidebars, flexible center */
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+}
+
+header { grid-area: header; }
+.left-bar { grid-area: left-bar; }
+main { grid-area: main; }
+.right-bar { grid-area: right-bar; }
+footer { grid-area: footer; }
+
+header, footer{
+    height: 50px;
+    background-color: aqua;
+}
+
+.left-bar{
+    background-color: blue;
+}
+
+.right-bar{
+    background-color: blueviolet;
+}
+
+main{
+    height: 100%;
+    background-color: brown;
+    padding-bottom: 60px;
+}
