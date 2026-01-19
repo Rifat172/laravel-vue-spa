@@ -21,27 +21,35 @@
         <!-- Overlay (тёмный фон для закрытия по клику вне меню) -->
         <div id="mobile-overlay" class="fixed inset-0 bg-black/50 z-40 hidden lg:hidden"></div>
 
-        <!-- Left sidebar (мобильный drawer + десктопная панель) -->
         <aside id="left-sidebar"
-            class="fixed inset-y-0 left-0 z-50 w-64 bg-blue-600 transform -translate-x-full transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-auto lg:block lg:w-auto">
-            <div class="p-6 text-white">
-                <h3 class="text-lg font-bold mb-4">Меню</h3>
+            class="fixed inset-y-0 left-0 z-50 w-64 bg-gray-800 transform -translate-x-full transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-auto lg:block lg:w-auto">
+            <div class="p-6 text-gray-100"> <!-- текст чуть светлее для контраста -->
+                <h3 class="text-xl font-bold mb-6 text-white">Меню</h3>
                 <ul>
-                    <li class="mb-2"><a href="/" class="block hover:bg-blue-700 p-2 rounded">Главная</a></li>
-                    <li class="mb-2"><a href="/products/create" class="block hover:bg-blue-700 p-2 rounded">Добавить
-                            продукт</a></li>
-                    <!-- Добавьте другие ссылки -->
+                    <li class="mb-3">
+                        <a href="/"
+                            class="block hover:bg-gray-700 p-3 rounded-lg transition text-gray-200 hover:text-white">
+                            Главная
+                        </a>
+                    </li>
+                    <li class="mb-3">
+                        <a href="/products/create"
+                            class="block hover:bg-gray-700 p-3 rounded-lg transition text-gray-200 hover:text-white">
+                            Добавить продукт
+                        </a>
+                    </li>
+                    <!-- Добавьте другие ссылки аналогично -->
                 </ul>
             </div>
         </aside>
 
         <!-- Main -->
-        <main class="overflow-y-auto bg-amber-800 p-4 md:p-8">
+        <main class="overflow-y-auto p-4 md:p-8">
             <div id="app"></div>
         </main>
 
         <!-- Right sidebar -->
-        <aside class="bg-purple-600 hidden lg:block p-6 text-white">
+        <aside class=" hidden lg:block p-6 text-white">
             right-bar content
         </aside>
 
