@@ -11,21 +11,24 @@
 </head>
 
 <body>
-    <div class="wrapper">
-        <header>
+    <div class="grid min-h-screen grid-rows-[auto_1fr_auto] grid-cols-1 lg:grid-cols-[200px_1fr_200px]">
+        <header class="col-span-full bg-cyan-400 h-12 flex items-center justify-center">
             header
         </header>
-        <div class="left-bar">
+
+        <aside class="left-bar bg-blue-600 hidden lg:block">
             left-bar
-        </div>
-        <main>
-            <script type="module" str="{{ Vite::asset('resources/js/app.js') }}"></script>
+        </aside>
+
+        <main class="overflow-y-auto bg-amber-800">
             <div id="app"></div>
         </main>
-        <div class="right-bar">
+
+        <aside class="right-bar bg-purple-600 hidden lg:block">
             right-bar
-        </div>
-        <footer>
+        </aside>
+
+        <footer class="col-span-full bg-cyan-400 h-12 flex items-center justify-center">
             footer
         </footer>
     </div>

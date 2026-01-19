@@ -1,18 +1,33 @@
 <template>
-    <!-- <h1>Product List</h1>   -->
-    <div class="wrapper">
-        <div class="col" v-for="product in products" :key="product.id">
+    <input v-model="searchQuery" placeholder="Поиск..." class="border rounded p-2 mb-4" />
+    <div v-if="loading" class="text-center">Загрузка...</div>
+    <div v-else-if="error" class="text-red-600 text-center">{{ error }}</div>
+    <div v-if="!products.length && !loading" class="text-center text-gray-500">
+        Нет продуктов
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-6">
+        <div v-for="product in products" :key="product.id"
+            class="flex flex-col justify-between bg-white rounded-lg shadow-lg p-6 h-64 border">
             <div>
-                <strong>{{ product.name }}</strong> - {{ product.price }}₽
+                <h3 class="text-lg font-bold">{{ product.name }}</h3>
+                <p class="text-gray-700">{{ product.price }}₽</p>
+                <p class="text-sm text-gray-600 mt-2">{{ product.description }}</p>
             </div>
-            {{ product.description }}
-            <div class="button--wrapper">
-                <router-link :to="`/products/${product.id}/edit`" class="btn">Edit</router-link>
-                <button @click="deleteProduct(product.id)" class="delete-btn btn">Delete</button>
+            <div class="flex justify-end gap-3 mt-4">
+                <router-link :to="{ name: 'products.edit', params: { id: product.id } }" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                    Edit
+                </router-link>
+                <button @click="deleteProduct(product.id)"
+                    class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">
+                    Delete
+                </button>
             </div>
         </div>
     </div>
-    <router-link to="/products/create" class="create-btn btn">Add</router-link>
+    <Pagination :links="products.links" /> <!-- если возвращаете с бэкенда paginate() -->
+    <router-link :to="{ name: 'products.create' }" class="block mx-auto mt-8 px-6 py-3 bg-green-600 text-white rounded hover:bg-green-700 text-center w-fit">
+        Add Product
+    </router-link>
 </template>
 
 <script>
@@ -22,11 +37,19 @@ export default {
     data() {
         return {
             products: [],
+            loading: true,
+            error: null,
         };
     },
     async created() {
-        const response = await axios.get('/api/products');
-        this.products = response.data;
+        try {
+            const response = await axios.get('/api/products');
+            this.products = response.data;
+        } catch (err) {
+            this.error = 'Не удалось загрузить продукты';
+        } finally {
+            this.loading = false;
+        }
     },
     methods: {
         async deleteProduct(id) {
@@ -36,84 +59,12 @@ export default {
             }
         },
     },
+    computed: {
+        filteredProducts() {
+            return this.products.filter(p =>
+                p.name.toLowerCase().includes(this.searchQuery.toLowerCase())
+            );
+        }
+    }
 };
 </script>
-
-<style scoped>
-.btn{
-    border: 1px solid;
-    border-color: black;
-    height: 50px;
-    min-height: 50px;
-    width: 100px;
-    cursor: pointer;
-    text-decoration: none;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-}
-
-.delete-btn {
-    background-color: red;
-    color: white;
-}
-
-.create-btn {
-    margin: 0 auto;
-    margin-top: 5px;
-    background-color: green;
-    color: white;
-}
-
-* {
-    box-sizing: border-box;
-}
-
-/* Элемент внутри сетки (карточка) */
-.wrapper > div { 
-    display: flex;
-    flex-direction: column;
-}
-
-/* Ваш блок с кнопкой */
-.button--wrapper {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    margin-top: auto; /* ЭТО КЛЮЧЕВОЙ МОМЕНТ: выталкивает блок вниз */
-}
-
-.wrapper {
-    padding-right: 20px;
-    padding-left: 20px;
-    padding-top: 20px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    justify-content: center;
-    /* border: 10px solid; */
-    height: 100%;
-}
-
-.col {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 1px solid;
-    border-radius: 10px;
-    padding: 20px;
-    height: 250px;
-}
-
-h1 {
-    display: flex;
-    justify-content: center;
-    margin: 10px;
-}
-
-@media (max-width: 768px) {
-    .wrapper {
-        grid-template-columns: 1fr; /* 1 колонка на мобильных */
-    }
-}
-</style>

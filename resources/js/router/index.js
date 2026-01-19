@@ -1,21 +1,22 @@
-import {createRouter, createWebHistory} from 'vue-router';
-import ProductList from '../components/ProductList.vue';
-import EditProduct from '../components/EditProduct.vue';
-import CreateProduct from '../components/CreateProduct.vue';
+import { createRouter, createWebHistory } from 'vue-router';
 
 const routes = [
     {
         path: '/',
-        component: ProductList,
+        name: 'products.index',        // или 'home'
+        component: () => import('../components/ProductList.vue'),
     },
     {
         path: '/products/create',
-        component: CreateProduct,
+        name: 'products.create',
+        component: () => import('../components/CreateProduct.vue'),
     },
     {
         path: '/products/:id/edit',
-        component: EditProduct,
-    }
+        name: 'products.edit',
+        component: () => import('../components/EditProduct.vue'),
+        props: true, // автоматически передаёт :id как prop в компонент
+    },
 ];
 
 const router = createRouter({
