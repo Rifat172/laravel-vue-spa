@@ -39,16 +39,6 @@
   </script>
   
   <style>
-.btn{
-    border: 1px solid;
-    height: 50px;
-    width: 100px;
-    cursor: pointer;
-    text-decoration: none;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-}
   form {
     display: flex;
     flex-direction: column;

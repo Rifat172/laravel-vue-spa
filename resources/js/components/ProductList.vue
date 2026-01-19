@@ -91,6 +91,7 @@ body {
 h1 {
     display: flex;
     justify-content: center;
+    margin: 10px;
 }
 
 @media (max-width: 768px) {
