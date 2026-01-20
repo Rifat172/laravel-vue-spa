@@ -4,17 +4,17 @@ const routes = [
     {
         path: '/',
         name: 'products.index',        // или 'home'
-        component: () => import('../components/ProductList.vue'),
+        component: () => import('../components/products/ProductList.vue'),
     },
     {
         path: '/products/create',
         name: 'products.create',
-        component: () => import('../components/CreateProduct.vue'),
+        component: () => import('../components/products/CreateProduct.vue'),
     },
     {
         path: '/products/:id/edit',
         name: 'products.edit',
-        component: () => import('../components/EditProduct.vue'),
+        component: () => import('../components/products/EditProduct.vue'),
         props: true, // автоматически передаёт :id как prop в компонент
     },
 ];
